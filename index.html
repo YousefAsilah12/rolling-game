@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/css/style.css">
+  <title>Roller</title>
+</head>
+
+<div id="alert-overlay" style="display: none;">
+  <div id="alert-box">
+    <p id="alert-message"></p>
+    <button id="alert-play-again" onclick="playAgain()">Play Again</button>
+  </div>
+</div>
+
+<div class="overlay">
+  <div class="alert-container">
+    <div class="alert">
+      <div id="winnerName" style="color: red;"></div>
+      <h2>Game Rules</h2>
+      <p>Insert your game rules here...</p>
+      <div class="input-container">
+        <label for="player1-name">Player 1 Name:</label>
+        <input type="text" id="player1-name" value="Player 1" maxlength="20">
+        <label for="player2-name">Player 2 Name:</label>
+        <input type="text" id="player2-name" value="Player 2" maxlength="20">
+        <label for="win-score">Winning Score:</label>
+        <input type="number" id="win-score" value="100">
+      </div>
+      <button id="start-game-btn"  class="btn">Start Game</button>
+    </div>
+  </div>
+</div>
+
+<body>
+  <div class="game-container">
+    <div class="players-container">
+      
+      <div class="player-box left-box">
+        <div>
+          <div class="player-name p1">Player 1</div>
+          <div class="player-score s1 ">0</div>
+
+        </div>
+        <div >
+          <h1 class="status-left"></h1>
+
+        </div>
+        <div class="current-score c1">Current Score: 0</div>
+      </div>
+
+      <div class="dice-container">
+
+        <div>
+          <button  class="new-game-btn btn">New Game</button>
+        </div>
+  
+        <div class="dices-vertical">
+          <img src="imgs/dice-1.png" class="dice left-dice">
+          <img src="imgs/dice-1.png" class="dice right-dice">
+        </div>
+  
+        <div class="controls-container">
+          <div class="buttons-container">
+            <button class="roll-dice-btn btn">Roll Dice</button>
+            <button class="hold-btn">Hold</button>
+          </div>
+        </div>
+  
+  
+      </div>
+  
+      <div class="player-box right-box">
+        <div>
+          <div class="player-name p2">Player 2</div>
+          <div class="player-score s2">0</div>
+
+        </div>
+        <div >
+          <h1 class="status-right"></h1>
+        </div>
+
+        <div class="current-score c2">Current Score: 0</div>
+      </div>
+
+
+    </div>
+
+    <!-- --- -->
+
+
+
+  </div>
+    <!-- ----- -->
+<script src="./main.js"></script>
+</body>
+
+</html>
