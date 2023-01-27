@@ -52,6 +52,11 @@ startGameBtn.addEventListener("click", () => {
 // restat game
 newGameBtn.addEventListener("click", () => {
   overlay.style.display = "block";
+  playerTwoScore.innerText = "0";
+  playerOneScore.innerText = "0";
+  current_1.innerText = "0";
+  current_2.innerText = "0";
+
 });
 
 
@@ -133,8 +138,8 @@ holdBtn.addEventListener("click", () => {
     document.querySelector(".status-left").innerText = `faill!`;
     document.querySelector(".status-right").innerText = `Win!`;
     document.getElementById("alert-overlay").style.display = "block";
-    playerOneScore.innerText = "0";
     playerTwoScore.innerText = "0";
+    playerOneScore.innerText = "0";
     current_1.innerText = "0";
     current_2.innerText = "0";
 
@@ -145,12 +150,12 @@ holdBtn.addEventListener("click", () => {
 
 //changin players
   if (startPlayer === playerTwo.innerText) {
-    playerTwoScore.innerText = Number(current_2.innerText) + total_1;
+    playerTwoScore.innerText = Number(current_2.innerText) + total_2;
     box1.style.opacity = "1";
     startPlayer = playerOne.innerText;
     current_2.innerText = "0"
   } else if (startPlayer === playerOne.innerText) {
-    playerOneScore.innerText = Number(current_1.innerText) + total_2;
+    playerOneScore.innerText = Number(current_1.innerText) + total_1;
     box2.style.opacity = "1";
     startPlayer = playerTwo.innerText;
     current_1.innerText = "0"
@@ -160,6 +165,11 @@ holdBtn.addEventListener("click", () => {
 
 // play agian
 function playAgain() {
+  debugger
   document.getElementById("alert-overlay").style.display = "none";
   overlay.style.display = "block";
+  playerTwoScore.innerText = "0";
+  playerOneScore.innerText = "0";
+  current_1.innerText = "0";
+  current_2.innerText = "0";
 }
