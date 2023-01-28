@@ -46,10 +46,11 @@ let startPlayer = pickPlayer();
 
 // StartGame Button
 startGameBtn.addEventListener("click", () => {
-  if(p1.value===p2.value){
+  if (p1.value === p2.value) {
+    errorSound.play();
 
-alert("choose different names")
-return;
+    alert("choose different names");
+    return;
   }
 
   if (p1.value && p2.value && winScore.value > 0) {
@@ -61,10 +62,10 @@ return;
     document.querySelector(".status-left").innerText = ``;
     document.querySelector(".status-right").innerText = ``;
     mainSound.play();
-    mainSound.loop=true;
-    mainSound.volume=0.5;
+    mainSound.loop = true;
+    mainSound.volume = 0.3;
     startSound.play();
-    startSound.volume=1;
+    startSound.volume = 1;
 
 
   } else {
@@ -76,6 +77,7 @@ return;
 // pressing on new Game
 // restat game
 newGameBtn.addEventListener("click", () => {
+  startSound.play();
   document.querySelector(".right-box").classList.remove("player-fail");
   document.querySelector(".left-box").classList.remove("player-fail");
   box1.style.opacity = "1";
@@ -109,9 +111,9 @@ function generateChance() {
 // roll button =>
 RollBtn.addEventListener("click", () => {
 
-debugger
-rollSound.play();
-rollSound.volume =1;
+  debugger
+  rollSound.play();
+  rollSound.volume = 1;
   if (startPlayer === playerOne.innerText) {
     let total;
     box2.style.opacity = ".5";
@@ -120,12 +122,12 @@ rollSound.volume =1;
     let res2 = generateChance();
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
-    if(res1===6 && res2===6){
+    if (res1 === 6 && res2 === 6) {
       errorSound.play();
-      errorSound.volume =1;
+      errorSound.volume = 1;
       box2.style.opacity = ".5";
       box1.style.opacity = "1";
-      startPlayer=playerTwo.innerText;
+      startPlayer = playerTwo.innerText;
       current_1.innerText = "0";
       alert("you got 6 - 6 ,your current 0 the turn gose to opponent");
       return;
@@ -141,15 +143,15 @@ rollSound.volume =1;
     box2.style.opacity = "1";
     let res1 = generateChance();
     let res2 = generateChance();
-    
+
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
-    if(res1===6 && res2===6){
+    if (res1 === 6 && res2 === 6) {
       errorSound.play();
-      errorSound.volume =1;
+      errorSound.volume = 1;
       box1.style.opacity = "1";
       box2.style.opacity = ".5";
-      startPlayer=playerOne.innerText;
+      startPlayer = playerOne.innerText;
       current_2.innerText = "0";
       alert("you got 6 - 6 ,your current now is 0 the turn gose to opponent");
       console.log("6-6");
@@ -166,6 +168,7 @@ rollSound.volume =1;
 holdBtn.addEventListener("click", () => {
   debugger
   swooshSound.play();
+  swooshSound.volume = 1;
   let total_2 = Number(playerTwoScore.innerText);
   let total_1 = Number(playerOneScore.innerText);
   let test2 = total_2 + Number(current_2.innerText)
@@ -178,7 +181,7 @@ holdBtn.addEventListener("click", () => {
     return;
   }
 
-//check winner
+  //check winner
   if (startPlayer === playerTwo.innerText && test2 > Number(winScore.value) || test1 === Number(winScore.value)) {
     winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerOne.innerText} wins!`;
@@ -208,7 +211,7 @@ holdBtn.addEventListener("click", () => {
 
 
 
-//changin players
+  //changin players
   if (startPlayer === playerTwo.innerText) {
     playerTwoScore.innerText = Number(current_2.innerText) + total_2;
     box1.style.opacity = "1";
@@ -227,6 +230,7 @@ holdBtn.addEventListener("click", () => {
 
 // play agian
 function playAgain() {
+  startSound.play();
   debugger
   document.querySelector(".right-box").classList.remove("player-fail");
   document.querySelector(".left-box").classList.remove("player-fail");
