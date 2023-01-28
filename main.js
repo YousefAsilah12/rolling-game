@@ -185,11 +185,13 @@ holdBtn.addEventListener("click", () => {
   if (startPlayer === playerTwo.innerText) {
     playerTwoScore.innerText = Number(current_2.innerText) + total_2;
     box1.style.opacity = "1";
+    box2.style.opacity = ".5";
     startPlayer = playerOne.innerText;
     current_2.innerText = "0"
   } else if (startPlayer === playerOne.innerText) {
     playerOneScore.innerText = Number(current_1.innerText) + total_1;
     box2.style.opacity = "1";
+    box1.style.opacity = ".5";
     startPlayer = playerTwo.innerText;
     current_1.innerText = "0"
   }
