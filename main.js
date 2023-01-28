@@ -1,4 +1,3 @@
-
 console.log("hello");
 
 
@@ -40,8 +39,6 @@ const startSound = document.getElementById("start-sound");
 
 
 
-
-
 // global virables
 let startPlayer = pickPlayer();
 
@@ -49,7 +46,7 @@ let startPlayer = pickPlayer();
 startGameBtn.addEventListener("click", () => {
   if (p1.value === p2.value) {
     errorSound.play();
-    
+
 
     alert("choose different names");
     return;
@@ -91,9 +88,9 @@ newGameBtn.addEventListener("click", () => {
   playerOneScore.innerText = "0";
   current_1.innerText = "0";
   current_2.innerText = "0";
-  playerOne.innerTexture=p1.value;
-  playerTwo.innerTexture=p2.value;
-  
+  playerOne.innerTexture = p1.value;
+  playerTwo.innerTexture = p2.value;
+
 
 });
 
@@ -117,12 +114,10 @@ function generateChance() {
 
 // roll button =>
 RollBtn.addEventListener("click", () => {
-
+  rotateImg();
   debugger
-  rollSound.pause();
-  rollSound.play();
-  rollSound.volume = 1;
-  if (startPlayer === playerOne.innerText) {
+  rollAudio();
+    if (startPlayer === playerOne.innerText) {
     let total;
     box2.style.opacity = ".5";
     box1.style.opacity = "1";
@@ -154,6 +149,7 @@ RollBtn.addEventListener("click", () => {
 
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
+
     if (res1 === 6 && res2 === 6) {
       errorSound.play();
       errorSound.volume = 1;
@@ -168,6 +164,7 @@ RollBtn.addEventListener("click", () => {
     total = res1 + res2 + parseInt(current_2.innerText);
     current_2.innerText = total;
   }
+  
 })
 
 
@@ -183,7 +180,7 @@ holdBtn.addEventListener("click", () => {
   let test2 = total_2 + Number(current_2.innerText)
   let test1 = total_1 + Number(current_1.innerText)
 
-  
+
   //check if current before hold
   if (current_1.innerText === "0" && current_2.innerText === "0") {
     alert("You Can't hold withOut To Roll First")
@@ -200,23 +197,23 @@ holdBtn.addEventListener("click", () => {
     addToLocal(playerTwo.innerText);
     let getH1 = getFromLocalSpecific(playerOne.innerText);
     let getH2 = getFromLocalSpecific(playerTwo.innerText);
-    if(!getH1){
-      getH1=0;
+    if (!getH1) {
+      getH1 = 0;
     }
-    if(!getH2){
-      getH2=0;
+    if (!getH2) {
+      getH2 = 0;
     }
     document.querySelector(".p2-score").innerText = getH2.toString();
     document.querySelector(".p1-score").innerText = getH1.toString();
     document.querySelector(".status-left").innerText = `Win!`;
     document.querySelector(".status-right").innerText = `Fail!`;
     document.querySelector(".right-box").classList.add("player-fail");
-    
+
     playerTwoScore.innerText = "0";
     playerOneScore.innerText = "0";
     current_1.innerText = "0";
     current_2.innerText = "0";
-  
+
     document.getElementById("alert-overlay").style.display = "block";
 
   } else if (startPlayer === playerOne.innerText && test1 > Number(winScore.value) || test2 === Number(winScore.value)) {
@@ -228,11 +225,11 @@ holdBtn.addEventListener("click", () => {
     addToLocal(playerOne.innerText);
     let getH1 = getFromLocalSpecific(playerOne.innerText);
     let getH2 = getFromLocalSpecific(playerTwo.innerText);
-    if(!getH1){
-      getH1=0;
+    if (!getH1) {
+      getH1 = 0;
     }
-    if(!getH2){
-      getH2=0;
+    if (!getH2) {
+      getH2 = 0;
     }
 
     document.querySelector(".p2-score").innerText = getH2.toString();
@@ -353,13 +350,36 @@ function getFromLocalSpecific(winnerName) {
 }
 
 // clear localstorage
-function clearCache(){
+function clearCache() {
   localStorage.clear();
   let res1 = getFromLocalSpecific(playerOne.innerText);
   let res2 = getFromLocalSpecific(playerTwo.innerText);
-  if (res1===null&&res2===null) {
+  if (res1 === null && res2 === null) {
     document.querySelector(".p1-score").innerText = "0";
     document.querySelector(".p2-score").innerText = "0";
-  
+
   }
+}
+
+
+// rotate img 
+function rotateImg() {
+  diceOne.classList.toggle("rotate");
+  diceTwo.classList.toggle("rotate");
+
+
+  diceOne.addEventListener("animationend", () => {
+    diceOne.classList.remove("rotate")
+  });
+  diceTwo.addEventListener("animationend", () => {
+    diceTwo.classList.remove("rotate")
+  });
+
+}
+
+// play roll sound
+function rollAudio() {
+  let clone = rollSound.cloneNode();
+  clone.play();
+  clone.volume = 1;
 }
