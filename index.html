@@ -6,6 +6,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+
   <title>Roller</title>
 </head>
 
@@ -47,9 +49,32 @@
   </div>
 </div>
 
+<div class="sseting" >
+  <h1 class="title">Game Settings</h1>
+  <div class="settings-container">
+    <div class="exit-setting"> <span class="exit">x</span> </div>
+    <div class="row-setting">
+      <div class="setting">
+        <h2>Music</h2>
+        <button class="mute-btn" onclick="muteMusic()">Mute</button>
+    </div>
+    <div class="setting">
+        <h2>Sound Effects</h2>
+        <button class="mute-btn" onclick="muteSoundEffects()">Mute</button>
+    </div>
+    </div>
+    
+  </div>
+</div>
 <body>
 
   <div class="game-container">
+
+    <div class="btn-setting">
+      <button class="settings-button">
+        <i class="fa fa-cog"></i>
+      </button>    </div>
+      
     <div class="players-container">
 
       <div class="player-box left-box">

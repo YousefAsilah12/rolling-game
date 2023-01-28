@@ -112,6 +112,7 @@ function generateChance() {
 RollBtn.addEventListener("click", () => {
 
   debugger
+  rollSound.pause();
   rollSound.play();
   rollSound.volume = 1;
   if (startPlayer === playerOne.innerText) {
@@ -244,3 +245,14 @@ function playAgain() {
   current_1.innerText = "0";
   current_2.innerText = "0";
 }
+
+
+
+
+// game setting
+const exitBtn=document.querySelector(".exit");
+exitBtn.addEventListener("click",()=>{
+document.querySelector(".sseting").style.display="none";
+;
+
+})
