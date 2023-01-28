@@ -29,10 +29,21 @@ const winnerPos = document.getElementById("winnerName");
 
 // global virables
 let startPlayer = pickPlayer();
-
+if(startPlayer==playerOne.innerText ){
+  box2.style.opacity=".5"
+}
+if(startPlayer==playerTwo.innerText){
+  box1.style.opacity=".5"
+}
 
 // StartGame Button
 startGameBtn.addEventListener("click", () => {
+  if(p1.value===p2.value){
+
+alert("choose different names")
+return;
+  }
+
   if (p1.value && p2.value && winScore.value > 0) {
     playerOne.innerText = p1.value;
     playerTwo.innerText = p2.value;
@@ -51,6 +62,8 @@ startGameBtn.addEventListener("click", () => {
 // pressing on new Game
 // restat game
 newGameBtn.addEventListener("click", () => {
+  document.querySelector(".right-box").classList.remove("player-fail");
+  document.querySelector(".left-box").classList.remove("player-fail");
   overlay.style.display = "block";
   playerTwoScore.innerText = "0";
   playerOneScore.innerText = "0";
@@ -80,15 +93,23 @@ function generateChance() {
 // roll button =>
 RollBtn.addEventListener("click", () => {
 
-
+debugger
 
   if (startPlayer === playerOne.innerText) {
     let total;
     box2.style.opacity = ".5";
     let res1 = generateChance();
-    res2 = generateChance();
+    let res2 = generateChance();
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
+    if(res1===6 && res2===6){
+      box2.style.opacity = "1";
+      box1.style.opacity = ".5";
+      startPlayer=playerTwo.innerText;
+      current_1.innerText = "0";
+      alert("you got 6 - 6 ,your current 0 the turn gose to opponent");
+      return;
+    }
     let before = parseInt(current_1.innerText);
     total = res1 + res2 + before
     current_1.innerText = total;
@@ -99,8 +120,17 @@ RollBtn.addEventListener("click", () => {
     box1.style.opacity = ".5";
     let res1 = generateChance();
     let res2 = generateChance();
+    
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
+    if(res1===6 && res2===6){
+      box1.style.opacity = "1";
+      box2.style.opacity = ".5";
+      startPlayer=playerOne.innerText;
+      current_2.innerText = "0";
+      alert("you got 6 - 6 ,your current now is 0 the turn gose to opponent");
+      return;
+    }
     total = res1 + res2 + parseInt(current_2.innerText);
     current_2.innerText = total;
   }
@@ -129,6 +159,8 @@ holdBtn.addEventListener("click", () => {
     document.getElementById("alert-overlay").style.display = "block";
     document.querySelector(".status-left").innerText = `Win!`;
     document.querySelector(".status-right").innerText = `Fail!`;
+    document.querySelector(".right-box").classList.add("player-fail");
+
     playerTwoScore.innerText = "0";
     playerOneScore.innerText = "0";
     current_1.innerText = "0";
@@ -138,6 +170,7 @@ holdBtn.addEventListener("click", () => {
     document.querySelector(".status-left").innerText = `faill!`;
     document.querySelector(".status-right").innerText = `Win!`;
     document.getElementById("alert-overlay").style.display = "block";
+    document.querySelector(".left-box").classList.add("player-fail");
     playerTwoScore.innerText = "0";
     playerOneScore.innerText = "0";
     current_1.innerText = "0";
@@ -166,6 +199,8 @@ holdBtn.addEventListener("click", () => {
 // play agian
 function playAgain() {
   debugger
+  document.querySelector(".right-box").classList.remove("player-fail");
+  document.querySelector(".left-box").classList.remove("player-fail");
   document.getElementById("alert-overlay").style.display = "none";
   overlay.style.display = "block";
   playerTwoScore.innerText = "0";
