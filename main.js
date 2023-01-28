@@ -8,8 +8,8 @@ const RollBtn = document.querySelector(".roll-dice-btn");
 const holdBtn = document.querySelector(".hold-btn");
 const playerOneScore = document.querySelector(".s1");
 const playerTwoScore = document.querySelector(".s2");
-const playerOne = document.querySelector(".p1");
-const playerTwo = document.querySelector(".p2");
+const playerOne = document.querySelector(".p-l-1");
+const playerTwo = document.querySelector(".p-l-2");
 const current_1 = document.querySelector(".c1");
 current_1.innerText = "0"
 const current_2 = document.querySelector(".c2");
@@ -49,12 +49,14 @@ let startPlayer = pickPlayer();
 startGameBtn.addEventListener("click", () => {
   if (p1.value === p2.value) {
     errorSound.play();
+    
 
     alert("choose different names");
     return;
   }
 
   if (p1.value && p2.value && winScore.value > 0) {
+    debugger
     playerOne.innerText = p1.value;
     playerTwo.innerText = p2.value;
     overlay.style.display = "none";
@@ -64,7 +66,7 @@ startGameBtn.addEventListener("click", () => {
     document.querySelector(".status-right").innerText = ``;
     mainSound.play();
     mainSound.loop = true;
-    mainSound.volume = 0.3;
+    mainSound.volume = 0.2;
     startSound.play();
     startSound.volume = 1;
 
@@ -89,6 +91,9 @@ newGameBtn.addEventListener("click", () => {
   playerOneScore.innerText = "0";
   current_1.innerText = "0";
   current_2.innerText = "0";
+  playerOne.innerTexture=p1.value;
+  playerTwo.innerTexture=p2.value;
+  
 
 });
 
@@ -170,6 +175,7 @@ RollBtn.addEventListener("click", () => {
 // hold button 
 holdBtn.addEventListener("click", () => {
   debugger
+  swooshSound.pause();
   swooshSound.play();
   swooshSound.volume = 1;
   let total_2 = Number(playerTwoScore.innerText);
