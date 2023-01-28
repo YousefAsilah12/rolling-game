@@ -27,6 +27,20 @@ const box2 = document.querySelector(".right-box");
 const box1 = document.querySelector(".left-box");
 const winnerPos = document.getElementById("winnerName");
 
+
+// get sounds
+const mainSound = document.getElementById("main-sound");
+const rollSound = document.getElementById("roll-sound");
+const swooshSound = document.getElementById("swoosh-sound");
+const winSound = document.getElementById("win-sound");
+const errorSound = document.getElementById("error-sound");
+const startSound = document.getElementById("start-sound");
+
+
+
+
+
+
 // global virables
 let startPlayer = pickPlayer();
 
@@ -46,6 +60,12 @@ return;
     console.log(startPlayer);
     document.querySelector(".status-left").innerText = ``;
     document.querySelector(".status-right").innerText = ``;
+    mainSound.play();
+    mainSound.loop=true;
+    mainSound.volume=0.5;
+    startSound.play();
+    startSound.volume=1;
+
 
   } else {
     alert("Please fill up all the fields");
@@ -90,7 +110,8 @@ function generateChance() {
 RollBtn.addEventListener("click", () => {
 
 debugger
-
+rollSound.play();
+rollSound.volume =1;
   if (startPlayer === playerOne.innerText) {
     let total;
     box2.style.opacity = ".5";
@@ -100,6 +121,8 @@ debugger
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
     if(res1===6 && res2===6){
+      errorSound.play();
+      errorSound.volume =1;
       box2.style.opacity = ".5";
       box1.style.opacity = "1";
       startPlayer=playerTwo.innerText;
@@ -122,6 +145,8 @@ debugger
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
     if(res1===6 && res2===6){
+      errorSound.play();
+      errorSound.volume =1;
       box1.style.opacity = "1";
       box2.style.opacity = ".5";
       startPlayer=playerOne.innerText;
@@ -140,6 +165,7 @@ debugger
 // hold button 
 holdBtn.addEventListener("click", () => {
   debugger
+  swooshSound.play();
   let total_2 = Number(playerTwoScore.innerText);
   let total_1 = Number(playerOneScore.innerText);
   let test2 = total_2 + Number(current_2.innerText)
@@ -154,6 +180,7 @@ holdBtn.addEventListener("click", () => {
 
 //check winner
   if (startPlayer === playerTwo.innerText && test2 > Number(winScore.value) || test1 === Number(winScore.value)) {
+    winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerOne.innerText} wins!`;
     document.getElementById("alert-overlay").style.display = "block";
     document.querySelector(".status-left").innerText = `Win!`;
@@ -165,6 +192,7 @@ holdBtn.addEventListener("click", () => {
     current_1.innerText = "0";
     current_2.innerText = "0";
   } else if (startPlayer === playerOne.innerText && test1 > Number(winScore.value) || test2 === Number(winScore.value)) {
+    winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerTwo.innerText} wins!`;
     document.querySelector(".status-left").innerText = `faill!`;
     document.querySelector(".status-right").innerText = `Win!`;
