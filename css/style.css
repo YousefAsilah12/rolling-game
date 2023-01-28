@@ -254,12 +254,23 @@ color: #D97398 !important;
 }
 @media (max-width:760px)
  {
+  body{
+    width: 100vw;
+    height: 100vh;
+      }
+.game-container{
+  height: 100vh;
+  justify-content: space-between;
+}
   .players-container{
+    height: 100%;
     display: flex;;
     flex-direction: column;
     padding: 1%;
   }
-
+.dice-container{
+  flex-direction: row;;
+}
 .dices-vertical{
     flex-direction: row;
     align-items: center;
@@ -272,7 +283,10 @@ color: #D97398 !important;
     height: 3rem;
   }
   .player-box{
+    flex-direction: row;;
     width: 100%;
+    height: 100%;
+  
   }
 
 
