@@ -58,6 +58,8 @@ return;
 newGameBtn.addEventListener("click", () => {
   document.querySelector(".right-box").classList.remove("player-fail");
   document.querySelector(".left-box").classList.remove("player-fail");
+  box1.style.opacity = "1";
+  box2.style.opacity = "1";
   overlay.style.display = "block";
   playerTwoScore.innerText = "0";
   playerOneScore.innerText = "0";
@@ -201,6 +203,9 @@ function playAgain() {
   document.querySelector(".right-box").classList.remove("player-fail");
   document.querySelector(".left-box").classList.remove("player-fail");
   document.getElementById("alert-overlay").style.display = "none";
+  box1.style.opacity = "1";
+  box2.style.opacity = "1";
+
   overlay.style.display = "block";
   playerTwoScore.innerText = "0";
   playerOneScore.innerText = "0";
