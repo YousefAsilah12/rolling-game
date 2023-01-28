@@ -6,7 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css"
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA=="
+    crossorigin="anonymous" />
 
   <title>Roller</title>
 </head>
@@ -20,8 +22,20 @@
 
 <div id="alert-overlay" style="display: none;">
   <div id="alert-box">
+    <div class="history">
+      <div class="player-history">
+        <p class="p1">--</p>
+        <p class="p1-score">--</p>
+      </div>
+      <div>
+        <p class="p2">--</p>
+        <p class="p2-score">--</p>
+      </div>
+    </div>
+
     <p id="alert-message"></p>
     <button id="alert-play-again" onclick="playAgain()">Play Again</button>
+    <button id="clear-cache" onclick="clearCache()">clearCache</button>
   </div>
 </div>
 
@@ -46,10 +60,14 @@
       </div>
       <button id="start-game-btn" class="btn">Start Game</button>
     </div>
+    <div>
+
+
+    </div>
   </div>
 </div>
 
-<div class="sseting" >
+<div class="sseting" style="display: none;">
   <h1 class="title">Game Settings</h1>
   <div class="settings-container">
     <div class="exit-setting"> <span class="exit">x</span> </div>
@@ -57,24 +75,21 @@
       <div class="setting">
         <h2>Music</h2>
         <button class="mute-btn" onclick="muteMusic()">Mute</button>
-    </div>
-    <div class="setting">
+      </div>
+      <div class="setting">
         <h2>Sound Effects</h2>
-        <button class="mute-btn" onclick="muteSoundEffects()">Mute</button>
+        <button class="mute-btn mute-btn-sfx" onclick="muteSoundEffects()">Mute</button>
+      </div>
     </div>
-    </div>
-    
+
   </div>
 </div>
+
 <body>
 
   <div class="game-container">
 
-    <div class="btn-setting">
-      <button class="settings-button">
-        <i class="fa fa-cog"></i>
-      </button>    </div>
-      
+
     <div class="players-container">
 
       <div class="player-box left-box">
@@ -100,6 +115,10 @@
       </div>
 
       <div class="dice-container">
+        <div class="btn-setting">
+          <button class="settings-button">
+            <i class="fa fa-cog"></i>
+          </button> </div>
 
         <div>
           <button class="new-game-btn btn">New Game</button>
@@ -114,6 +133,7 @@
           <div class="buttons-container">
             <button class="roll-dice-btn btn">Roll Dice</button>
             <button class="hold-btn">Hold</button>
+
           </div>
         </div>
 
@@ -126,7 +146,7 @@
           <div class="player-name p2">Player 2</div>
 
           <div class="score-container">
-            <span>Score:  </span>
+            <span>Score: </span>
             <div class="player-score s2"> 0</div>
           </div>
 

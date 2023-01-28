@@ -30,6 +30,7 @@ body{
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  align-items: center;
   height: 100vh;
   width: 100%;
   align-items: center;
@@ -238,6 +239,14 @@ color: #D97398 !important;
   padding: 20px;
   border-radius: 10px;
 }
+.history{
+  display: flex;;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 3vh;
+  text-align: center;
+}
 
 #alert-message {
   font-size: 18px;
@@ -246,6 +255,7 @@ color: #D97398 !important;
 }
 
 #alert-play-again {
+  margin-bottom: 1rem;
   background-color: var(--fail-backColor);
   width: 100%;
   color: var(--button-color);
@@ -255,6 +265,21 @@ color: #D97398 !important;
   font-size: 16px;
   cursor: pointer;
 }
+#clear-cache{
+  background-color: var(--fail-backColor);
+  width: 100%;
+  color: var(--button-color);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+
+}
+.btn-setting{
+  text-align: center;
+  margin: 0;padding: 0;
+  }
 /* setting */
         /* Title styling */
         .sseting{
@@ -287,6 +312,7 @@ color: #D97398 !important;
         }
         /* Settings container styling */
         .settings-container {
+          width: 100%;
             display: flex;
             flex-wrap: wrap;
             flex-direction: column;
@@ -296,7 +322,6 @@ color: #D97398 !important;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 3px 3px var(--fail-backColor);
-            width: fit-content;
         }
         .exit-setting{
           align-items: flex-start;
@@ -354,7 +379,6 @@ color: #D97398 !important;
         }
         
         .settings-button i {
-          margin-right: 10px;
         }
         
         .fa {

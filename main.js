@@ -78,6 +78,7 @@ startGameBtn.addEventListener("click", () => {
 // restat game
 newGameBtn.addEventListener("click", () => {
   startSound.play();
+  startSound.volume = 1;
   document.querySelector(".right-box").classList.remove("player-fail");
   document.querySelector(".left-box").classList.remove("player-fail");
   box1.style.opacity = "1";
@@ -175,37 +176,61 @@ holdBtn.addEventListener("click", () => {
   let test2 = total_2 + Number(current_2.innerText)
   let test1 = total_1 + Number(current_1.innerText)
 
-
+  
   //check if current before hold
   if (current_1.innerText === "0" && current_2.innerText === "0") {
     alert("You Can't hold withOut To Roll First")
     return;
   }
-
+  let getH1 = getFromLocalSpecific(playerOne.innerText);
+  let getH2 = getFromLocalSpecific(playerTwo.innerText);
+  debugger
   //check winner
   if (startPlayer === playerTwo.innerText && test2 > Number(winScore.value) || test1 === Number(winScore.value)) {
     winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerOne.innerText} wins!`;
-    document.getElementById("alert-overlay").style.display = "block";
+    addToLocal(playerTwo.innerText);
+    document.querySelector(".p1").innerText = playerOne.innerText;
+    document.querySelector(".p2").innerText = playerTwo.innerText;
+    if(getH1.toString()!==null){
+      document.querySelector(".p1-score").innerText = getH1.toString();
+    }
+    if(getH2.toString()!==null){
+      document.querySelector(".p2-score").innerText = getH2.toString();
+    }
     document.querySelector(".status-left").innerText = `Win!`;
     document.querySelector(".status-right").innerText = `Fail!`;
     document.querySelector(".right-box").classList.add("player-fail");
-
+    
     playerTwoScore.innerText = "0";
     playerOneScore.innerText = "0";
     current_1.innerText = "0";
     current_2.innerText = "0";
+  
+    document.getElementById("alert-overlay").style.display = "block";
+
   } else if (startPlayer === playerOne.innerText && test1 > Number(winScore.value) || test2 === Number(winScore.value)) {
+    debugger
     winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerTwo.innerText} wins!`;
+    addToLocal(playerOne.innerText);
+
+    document.querySelector(".p1").innerText = playerOne.innerText;
+    document.querySelector(".p2").innerText = playerTwo.innerText;
+    if(getH1.toString()!==null){
+      document.querySelector(".p1-score").innerText = getH1.toString();
+    }
+    if(getH2.toString()!==null){
+      document.querySelector(".p2-score").innerText = getH2.toString();
+    }
     document.querySelector(".status-left").innerText = `faill!`;
     document.querySelector(".status-right").innerText = `Win!`;
-    document.getElementById("alert-overlay").style.display = "block";
     document.querySelector(".left-box").classList.add("player-fail");
     playerTwoScore.innerText = "0";
     playerOneScore.innerText = "0";
     current_1.innerText = "0";
     current_2.innerText = "0";
+    document.getElementById("alert-overlay").style.display = "block";
 
 
   }
@@ -231,6 +256,7 @@ holdBtn.addEventListener("click", () => {
 
 // play agian
 function playAgain() {
+  debugger
   startSound.play();
   debugger
   document.querySelector(".right-box").classList.remove("player-fail");
@@ -239,20 +265,88 @@ function playAgain() {
   box1.style.opacity = "1";
   box2.style.opacity = "1";
 
-  overlay.style.display = "block";
   playerTwoScore.innerText = "0";
   playerOneScore.innerText = "0";
   current_1.innerText = "0";
   current_2.innerText = "0";
+  overlay.style.display = "block";
 }
 
 
 
 
 // game setting
-const exitBtn=document.querySelector(".exit");
-exitBtn.addEventListener("click",()=>{
-document.querySelector(".sseting").style.display="none";
-;
+const exitBtn = document.querySelector(".exit");
+exitBtn.addEventListener("click", () => {
+  document.querySelector(".sseting").style.display = "none";
 
 })
+
+const settingBtn = document.querySelector(".settings-button");
+settingBtn.addEventListener("click", () => {
+  document.querySelector(".sseting").style.display = "block";
+});
+
+
+// mute music
+function muteMusic() {
+  debugger
+  if (mainSound.muted) {
+    mainSound.muted = false;
+    document.querySelector(".mute-btn").innerText = "Mute";
+  } else {
+    mainSound.muted = true;
+    document.querySelector(".mute-btn").innerText = "UnMute";
+  }
+
+}
+
+function muteSoundEffects() {
+  if (swooshSound.muted) {
+    swooshSound.muted = false;
+    winSound.muted = false;
+    rollSound.muted = false;
+    errorSound.muted = false;
+    startSound.muted = false;
+    document.querySelector(".mute-btn-sfx").innerText = "Mute";
+  } else {
+    swooshSound.muted = true;
+    winSound.muted = true;
+    rollSound.muted = true;
+    errorSound.muted = true;
+    startSound.muted = true;
+    document.querySelector(".mute-btn-sfx").innerText = "UnMute";
+  }
+}
+
+
+
+
+// add and get from local storage
+function addToLocal(winnerName) {
+  debugger
+  let Wins = JSON.parse(localStorage.getItem(winnerName));
+  if (Wins) {
+    let newScore = parseInt(Wins) + 1;
+    localStorage.setItem(winnerName, newScore);
+    return
+  }
+  localStorage.setItem(winnerName, "1");
+
+}
+
+function getFromLocalSpecific(winnerName) {
+  return localStorage.getItem(winnerName);
+}
+
+// clear localstorage
+function clearCache(){
+  localStorage.clear();
+  let res1 = getFromLocalSpecific(playerOne.innerText);
+  let res2 = getFromLocalSpecific(playerTwo.innerText);
+  if (res1===null&&res2===null) {
+    document.querySelector(".p1-score").innerText = "--";
+    document.querySelector(".p2-score").innerText = "--";
+  
+  }
+}
