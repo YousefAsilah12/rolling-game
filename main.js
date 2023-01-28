@@ -29,12 +29,6 @@ const winnerPos = document.getElementById("winnerName");
 
 // global virables
 let startPlayer = pickPlayer();
-if(startPlayer==playerOne.innerText ){
-  box2.style.opacity=".5"
-}
-if(startPlayer==playerTwo.innerText){
-  box1.style.opacity=".5"
-}
 
 // StartGame Button
 startGameBtn.addEventListener("click", () => {
@@ -98,13 +92,14 @@ debugger
   if (startPlayer === playerOne.innerText) {
     let total;
     box2.style.opacity = ".5";
+    box1.style.opacity = "1";
     let res1 = generateChance();
     let res2 = generateChance();
     diceOne.src = "./imgs/dice-" + res1 + ".png";
     diceTwo.src = "./imgs/dice-" + res2 + ".png";
     if(res1===6 && res2===6){
-      box2.style.opacity = "1";
-      box1.style.opacity = ".5";
+      box2.style.opacity = ".5";
+      box1.style.opacity = "1";
       startPlayer=playerTwo.innerText;
       current_1.innerText = "0";
       alert("you got 6 - 6 ,your current 0 the turn gose to opponent");
@@ -118,6 +113,7 @@ debugger
   } else if (startPlayer === playerTwo.innerText) {
     let total;
     box1.style.opacity = ".5";
+    box2.style.opacity = "1";
     let res1 = generateChance();
     let res2 = generateChance();
     
@@ -129,6 +125,7 @@ debugger
       startPlayer=playerOne.innerText;
       current_2.innerText = "0";
       alert("you got 6 - 6 ,your current now is 0 the turn gose to opponent");
+      console.log("6-6");
       return;
     }
     total = res1 + res2 + parseInt(current_2.innerText);
