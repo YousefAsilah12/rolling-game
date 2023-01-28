@@ -1,3 +1,4 @@
+
 console.log("hello");
 
 
@@ -182,22 +183,25 @@ holdBtn.addEventListener("click", () => {
     alert("You Can't hold withOut To Roll First")
     return;
   }
-  let getH1 = getFromLocalSpecific(playerOne.innerText);
-  let getH2 = getFromLocalSpecific(playerTwo.innerText);
+
   debugger
   //check winner
   if (startPlayer === playerTwo.innerText && test2 > Number(winScore.value) || test1 === Number(winScore.value)) {
     winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerOne.innerText} wins!`;
-    addToLocal(playerTwo.innerText);
     document.querySelector(".p1").innerText = playerOne.innerText;
     document.querySelector(".p2").innerText = playerTwo.innerText;
-    if(getH1.toString()!==null){
-      document.querySelector(".p1-score").innerText = getH1.toString();
+    addToLocal(playerTwo.innerText);
+    let getH1 = getFromLocalSpecific(playerOne.innerText);
+    let getH2 = getFromLocalSpecific(playerTwo.innerText);
+    if(!getH1){
+      getH1=0;
     }
-    if(getH2.toString()!==null){
-      document.querySelector(".p2-score").innerText = getH2.toString();
+    if(!getH2){
+      getH2=0;
     }
+    document.querySelector(".p2-score").innerText = getH2.toString();
+    document.querySelector(".p1-score").innerText = getH1.toString();
     document.querySelector(".status-left").innerText = `Win!`;
     document.querySelector(".status-right").innerText = `Fail!`;
     document.querySelector(".right-box").classList.add("player-fail");
@@ -213,16 +217,20 @@ holdBtn.addEventListener("click", () => {
     debugger
     winSound.play();
     document.getElementById("alert-message").innerText = `Player ${playerTwo.innerText} wins!`;
-    addToLocal(playerOne.innerText);
-
     document.querySelector(".p1").innerText = playerOne.innerText;
     document.querySelector(".p2").innerText = playerTwo.innerText;
-    if(getH1.toString()!==null){
-      document.querySelector(".p1-score").innerText = getH1.toString();
+    addToLocal(playerOne.innerText);
+    let getH1 = getFromLocalSpecific(playerOne.innerText);
+    let getH2 = getFromLocalSpecific(playerTwo.innerText);
+    if(!getH1){
+      getH1=0;
     }
-    if(getH2.toString()!==null){
-      document.querySelector(".p2-score").innerText = getH2.toString();
+    if(!getH2){
+      getH2=0;
     }
+
+    document.querySelector(".p2-score").innerText = getH2.toString();
+    document.querySelector(".p1-score").innerText = getH1.toString();
     document.querySelector(".status-left").innerText = `faill!`;
     document.querySelector(".status-right").innerText = `Win!`;
     document.querySelector(".left-box").classList.add("player-fail");
@@ -324,12 +332,11 @@ function muteSoundEffects() {
 
 // add and get from local storage
 function addToLocal(winnerName) {
-  debugger
   let Wins = JSON.parse(localStorage.getItem(winnerName));
   if (Wins) {
     let newScore = parseInt(Wins) + 1;
     localStorage.setItem(winnerName, newScore);
-    return
+    return;
   }
   localStorage.setItem(winnerName, "1");
 
@@ -345,8 +352,8 @@ function clearCache(){
   let res1 = getFromLocalSpecific(playerOne.innerText);
   let res2 = getFromLocalSpecific(playerTwo.innerText);
   if (res1===null&&res2===null) {
-    document.querySelector(".p1-score").innerText = "--";
-    document.querySelector(".p2-score").innerText = "--";
+    document.querySelector(".p1-score").innerText = "0";
+    document.querySelector(".p2-score").innerText = "0";
   
   }
 }
