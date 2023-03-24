@@ -38,7 +38,7 @@ There is a settings page to control the sound effects and music.</li>
 <li>Settings page to control game sounds and music.</li>
 </ul><h2>Screenshots</h2>
 <hr><p><img src="https://i.ibb.co/346W67s/Screenshot-2023-03-24-133602.png" alt=""></p><p><img src="https://i.ibb.co/23vzswm/Screenshot-2023-03-24-133613.png" alt=""></p><p><img src="https://i.ibb.co/pQWVkPH/Screenshot-2023-03-24-133620.png" alt=""></p><p><img src="https://i.ibb.co/jDGXXDk/Screenshot-2023-03-24-135136.png" alt=""></p><h2>Usage</h2>
-<hr><p>Netlify Link:https://yousef-rolling.netlify.app/</p><h2>Project Status</h2>
+<hr><p>Demo:https://yousef-rolling.netlify.app/</p><h2>Project Status</h2>
 <hr><p>Completed</p><h2>Features that can be added</h2>
 <hr><ul>
 <li>Players can choose to play against an AI opponent.</li>
